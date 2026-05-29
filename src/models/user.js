@@ -1,11 +1,11 @@
 // Aquí creamos el modelo del usuario, con su esquema y exportamos el modelo para usarlo en otras partes de la aplicación
 
-import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  password: { type: String, required: true, select: false },
   role: { type: String, enum: ["user", "admin", "superUser"], default: "user" },
   avatar: { type: String },
   library: [{ type: mongoose.Schema.Types.ObjectId, ref: "gallery" }],
@@ -22,4 +22,4 @@ userSchema.pre("save", function () {
 
 const User = mongoose.model("user", userSchema, "users");
 
-export default User;
+module.exports = User;

@@ -1,10 +1,9 @@
 require("dotenv").config();
-import express from "express";
-import cors from "cors";
-import mongoose from "mongoose";
-import connectDB from "./src/config/db.js";
-import connectCloudinary from "./src/config/cloudinary.js";
-import userRoutes from "./src/routes/user.js";
+const express = require("express");
+const cors = require("cors");
+const connectDB = require("./src/config/db");
+const connectCloudinary = require("./src/config/cloudinary");
+const userRoutes = require("./src/routes/user");
 // import galleryRoutes from "./src/routes/gallery.js";
 
 const app = express();

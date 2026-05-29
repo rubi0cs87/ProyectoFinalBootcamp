@@ -1,21 +1,28 @@
 //Rutas de usuario, con sus respectivos controladores y middlewares
+const {
+  authMiddleware,
+  isAdmin,
+  isSuperUser,
+  isAdminOrSuperUser,
+} = require("../middlewares/credentials");
 
-import express from "express";
-import {
+const express = require("express");
+const {
   registerUser,
   loginUser,
   getUserProfile,
   updateUserProfile,
   deleteUserProfile,
-} from "../controllers/user.js";
-import authMiddleware from "../middlewares/authMiddleware.js";
+  changeUserRole,
+} = require("../controllers/user");
 
 const router = express.Router();
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.get("/profile", authMiddleware, getUserProfile);
+router.get("/profile", authMiddleware, isAdminOrSuperUser, getUserProfile);
 router.put("/profile", authMiddleware, updateUserProfile);
-router.delete("/profile", authMiddleware, deleteUserProfile);
+router.delete("/delete/:email", authMiddleware, deleteUserProfile);
+router.put("/change-role/:email", authMiddleware, changeUserRole);
 
-export default router;
+module.exports = router;

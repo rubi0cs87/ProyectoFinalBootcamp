@@ -1,4 +1,4 @@
-import cloudinary from "cloudinary";
+const cloudinary = require("cloudinary").v2;
 
 const deleteFile = async (url) => {
   try {
@@ -9,7 +9,7 @@ const deleteFile = async (url) => {
 
     let public_id = `${array.at(-2)}/${name}`;
 
-    await cloudinary.v2.uploader.destroy(public_id, () => {
+    await cloudinary.uploader.destroy(public_id, () => {
       console.log("Archivo eliminado de Cloudinary:", public_id);
     });
   } catch (error) {
@@ -17,4 +17,4 @@ const deleteFile = async (url) => {
   }
 };
 
-export default deleteFile;
+module.exports = deleteFile;

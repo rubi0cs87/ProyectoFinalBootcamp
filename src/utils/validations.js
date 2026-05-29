@@ -6,4 +6,4 @@ const validations = (email, password) => {
   return emailRegex.test(email) && passwordRegex.test(password);
 };
 
-module.exports = { validations };
+module.exports = validations;

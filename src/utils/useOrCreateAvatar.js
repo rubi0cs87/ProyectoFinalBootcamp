@@ -1,11 +1,7 @@
 // Aquí subiremos el avatar Default si el usuario no sube uno, en caso de ya estar subido el avatar default, lo usaremos para el nuevo usuario
 
-import { v2 as cloudinary } from "cloudinary";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const cloudinary = require("cloudinary").v2;
+const path = require("path");
 
 const getOrCreateDefaultAvatar = async () => {
   try {
@@ -23,4 +19,4 @@ const getOrCreateDefaultAvatar = async () => {
   }
 };
 
-export default getOrCreateDefaultAvatar;
+module.exports = getOrCreateDefaultAvatar;
